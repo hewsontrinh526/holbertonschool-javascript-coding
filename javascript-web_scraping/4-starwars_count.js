@@ -10,8 +10,8 @@ request(url, function (error, response, body) {
   let count = 0;
   for (const film of films) {
     for (const character of film.characters) {
-        const characterId = character.split('/').filter(Boolean).pop();
-        if (characterId === '18') {
+      const characterId = character.split('/').filter(Boolean).pop();
+      if (characterId === '18') {
         count = count + 1;
       }
     }

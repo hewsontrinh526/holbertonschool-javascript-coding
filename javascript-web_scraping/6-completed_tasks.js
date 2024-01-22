@@ -10,11 +10,11 @@ request(url, function (error, response, body) {
   const completed = {};
   for (const task of tasks) {
     if (task.completed === true) {
-      if (completed[task.userId] === undefined) {
-        completed[task.userId] = 1;
-      } else {
-        completed[task.userId] = completed[task.userId] + 1;
+      const key = task.userId.toString();
+      if (completed[key] === undefined) {
+        completed[key] = 0;
       }
+        completed[key] = completed[key] + 1;
     }
   }
   console.log(completed);

@@ -10,13 +10,21 @@ function countStudents(path) {
 
     students = students.map((student) => student.split(','));
 
-    const fields = students.shift();
+    students.shift();
     const csStudents = students.filter((student) => student[3] === 'CS');
     const sweStudents = students.filter((student) => student[3] === 'SWE');
 
     console.log(`Number of students: ${students.length}`);
-    console.log(`Number of students in CS: ${csStudents.length}. List: ${csStudents.map((student) => student[0]).join(', ')}`);
-    console.log(`Number of students in SWE: ${sweStudents.length}. List: ${sweStudents.map((student) => student[0]).join(', ')}`);
+    console.log(
+      `Number of students in CS: ${csStudents.length}. List: ${csStudents
+        .map((student) => student[0])
+        .join(', ')}`,
+    );
+    console.log(
+      `Number of students in SWE: ${sweStudents.length}. List: ${sweStudents
+        .map((student) => student[0])
+        .join(', ')}`,
+    );
   });
 }
 

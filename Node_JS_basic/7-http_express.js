@@ -1,4 +1,7 @@
+/* eslint-disable jest/require-hook */
+
 const express = require('express');
+
 const port = 1245;
 const app = express();
 const fs = require('fs').promises;
@@ -6,7 +9,7 @@ const fs = require('fs').promises;
 async function countStudents(path) {
   try {
     const data = await fs.readFile(path, 'utf-8');
-    let lines = data.split('\n');
+    const lines = data.split('\n');
     let students = lines.filter((line) => line).slice(1);
 
     students = students
@@ -34,15 +37,15 @@ app.get('/', (req, res) => {
 });
 
 app.get('/students', async (req, res) => {
-    try {
-      const students = await countStudents(process.argv[2]);
-      res.send(`This is the list of our students\n${students}`);
-    } catch (error) {
-      res.status(500).send(`This is the list of our students\n${error.message}`);
-    }
-  });
+  try {
+    const students = await countStudents(process.argv[2]);
+    res.send(`This is the list of our students\n${students}`);
+  } catch (error) {
+    res.status(500).send(`This is the list of our students\n${error.message}`);
+  }
+});
 
-app.listen(port, function () {
+app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
 

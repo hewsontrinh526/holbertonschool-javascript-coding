@@ -1,11 +1,12 @@
 const http = require('http');
+
 const port = 1245;
 const fs = require('fs').promises;
 
 async function countStudents(path) {
   try {
     const data = await fs.readFile(path, 'utf-8');
-    let lines = data.split('\n');
+    const lines = data.split('\n');
     let students = lines.filter((line) => line).slice(1);
 
     students = students

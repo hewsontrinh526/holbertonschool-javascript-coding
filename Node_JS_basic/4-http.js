@@ -4,4 +4,8 @@ const port = 1245;
 app.createServer(function (req, res) {
     res.write('Hello Holberton School!');
     res.end();
-}).listen(port);
+});
+
+app.listen(port);
+
+module.exports = app;

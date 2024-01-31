@@ -1,7 +1,7 @@
-const app = require('http');
+const http = require('http');
 const port = 1245;
 
-app.createServer(function (req, res) {
+const app = http.createServer(function (req, res) {
     res.write('Hello Holberton School!');
     res.end();
 });

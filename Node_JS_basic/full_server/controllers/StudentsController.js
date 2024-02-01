@@ -11,7 +11,7 @@ class StudentsController {
             studentData.CS.length
           }. List: ${studentData.CS.join(', ')}\nNumber of students in SWE: ${
             studentData.SWE.length
-          }. List: ${studentData.SWE.join(', ')}`
+          }. List: ${studentData.SWE.join(', ')}`,
         );
       res.end();
     } catch (error) {
@@ -27,15 +27,15 @@ class StudentsController {
         return res.end();
       }
       const studentData = await readDatabase(process.argv[2]);
-      res
+      return res
         .status(200)
         .send(
           major === 'CS'
             ? `List: ${studentData.CS.join(', ')}`
-            : `List: ${studentData.SWE.join(', ')}`
+            : `List: ${studentData.SWE.join(', ')}`,
         );
     } catch (error) {
-      res.status(500).send(error.message);
+      return res.status(500).send(error.message);
     }
   }
 }

@@ -4,7 +4,16 @@ class StudentsController {
   static async getAllStudents(req, res) {
     try {
       const studentData = await readDatabase(process.argv[2]);
-      res.status(200).send(`This is the list of our students\nNumber of students in CS: ${studentData.CS.length}. List: ${studentData.CS.join(', ')}\nNumber of students in SWE: ${studentData.SWE.length}. List: ${studentData.SWE.join(', ')}`);      res.end();
+      res
+        .status(200)
+        .send(
+          `This is the list of our students\nNumber of students in CS: ${
+            studentData.CS.length
+          }. List: ${studentData.CS.join(', ')}\nNumber of students in SWE: ${
+            studentData.SWE.length
+          }. List: ${studentData.SWE.join(', ')}`
+        );
+      res.end();
     } catch (error) {
       res.status(500).send(error.message);
     }
@@ -18,9 +27,13 @@ class StudentsController {
         return res.end();
       }
       const studentData = await readDatabase(process.argv[2]);
-      res.status(200).send(
-        major === 'CS' ? `List: ${studentData.CS.join(', ')}` : `List: ${studentData.SWE.join(', ')}`,
-      );
+      res
+        .status(200)
+        .send(
+          major === 'CS'
+            ? `List: ${studentData.CS.join(', ')}`
+            : `List: ${studentData.SWE.join(', ')}`
+        );
     } catch (error) {
       res.status(500).send(error.message);
     }

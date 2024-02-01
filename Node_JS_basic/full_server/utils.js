@@ -16,10 +16,10 @@ async function readDatabase(path) {
         swe.push(studentData[i][0]);
       }
     }
-    return ({
+    return {
       CS: cs,
       SWE: swe,
-    });
+    };
   } catch (error) {
     throw new Error('Cannot load the database');
   }

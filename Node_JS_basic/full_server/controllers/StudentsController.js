@@ -11,7 +11,7 @@ class StudentsController {
             students.CS.length
           }. List: ${students.CS.join(', ')}\nNumber of students in SWE: ${
             students.SWE.length
-          }. List: ${students.SWE.join(', ')}`
+          }. List: ${students.SWE.join(', ')}`,
         );
       res.end();
     } catch (error) {
@@ -33,7 +33,7 @@ class StudentsController {
         .send(
           major === 'CS'
             ? `List: ${studentData.CS.join(', ')}`
-            : `List: ${studentData.SWE.join(', ')}`
+            : `List: ${studentData.SWE.join(', ')}`,
         );
     } catch (error) {
       res.status(500).send('Cannot load the database');

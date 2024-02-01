@@ -28,9 +28,13 @@ class StudentsController {
         res.end();
       }
       const studentData = await readDatabase(process.argv[2]);
-      res.status(200).send(
-        major === 'CS' ? `List: ${studentData.CS.join(', ')}` : `List: ${studentData.SWE.join(', ')}`,
-      );
+      res
+        .status(200)
+        .send(
+          major === 'CS'
+            ? `List: ${studentData.CS.join(', ')}`
+            : `List: ${studentData.SWE.join(', ')}`
+        );
     } catch (error) {
       res.status(500).send('Cannot load the database');
     }

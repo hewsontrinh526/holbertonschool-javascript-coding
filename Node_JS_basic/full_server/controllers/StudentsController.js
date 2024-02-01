@@ -4,8 +4,7 @@ class StudentsController {
   static async getAllStudents(req, res) {
     try {
       const studentData = await readDatabase(process.argv[2]);
-      res.status(200).send(`This is the list of our students\nNumber of students in CS: ${studentData.CS.kength}). List: ${studentData.CS.join(', ')}\nNumber of students in SWE: ${studentData.SWE.length}. List: ${studentData.SWE.join(', ')}`);
-      res.end();
+      res.status(200).send(`This is the list of our students\nNumber of students in CS: ${studentData.CS.length}. List: ${studentData.CS.join(', ')}\nNumber of students in SWE: ${studentData.SWE.length}. List: ${studentData.SWE.join(', ')}`);      res.end();
     } catch (error) {
       res.status(500).send(error.message);
       res.end();

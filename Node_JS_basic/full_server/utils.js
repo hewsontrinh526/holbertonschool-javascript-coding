@@ -1,28 +1,28 @@
-const fs = require('fs');
+const fs = require('fs').promises;
 
-function readDatabase(filepath) {
-    return new Promise((resolve, reject) => {
-        fs.promises.readFile(filepath, 'utf-8')
-            .then(data => {
-                const lines = data.split('\n');
-                const students = {
-                    CS: [],
-                    SWE: [],
-                };
+async function readDatabase(filepath) {
+    try {
+        const data = await fs.readFile(filepath, 'utf-8');
+        const lines = data.split('\n').filter((line) => line.trim() !== '');
+        const students = lines.slice(1).map((line) => line.split(','));
+        const cs = [];
+        const swe = [];
 
-                lines.forEach(line => {
-                    const [ , , field, firstName] = line.split(';');
-                    if (field === 'CS' || field === 'SWE') {
-                        students[field].push(firstName);
-                    }
-                });
+        for (let i = 0; i < students.length; i += 1) {
+            if (students[i][3] === 'CS') {
+                cs.push(students[i][0]);
+            } else if (students[i][3] === 'SWE') {
+                swe.push(students[i][0]);
+            }
+        }
 
-                resolve(students);
-            })
-            .catch(error => {
-                reject(error);
-            });
-    });
+        return ({
+            CS: cs,
+            SWE: swe,
+        });
+    } catch (error) {
+        throw new Error('Cannot load the database')
+    }
 }
 
-module.exports = { readDatabase };
+module.exports = readDatabase;
